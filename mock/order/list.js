@@ -18,7 +18,9 @@ var data = Mock.mock({
               "name": Random.word(),
               "goodsImg": Random.image('200x100', '#50B347', '#FFF', 'Mock.js'),
               "saleValue": Random.cparagraph(),
-              "nbPrice": Random.natural(60, 100)
+              "nbPrice": Random.natural(60, 100),
+              "num": Random.natural(1, 10),
+              "skuId|+1": ['红', '白', '蓝']
             }
           ],
           "address": {
