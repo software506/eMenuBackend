@@ -1,78 +1,41 @@
-const express = require('express')
-const dotenv = require("dotenv")
-dotenv.config()
-const app = express()
-const port = process.env.ORIGIN_HOST_PROT
-const host = process.env.ORIGIN_HOST
-var https = require('https')
-var http = require('http')
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 
-app.get('/', (req, res) => res.send('Hello World!'))
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
 
-// 验证是否登陆
-app.post('/main', (req, res) => {
-  res.set('Content-Type', 'application/json; charset=utf-8')
-  res.send(JSON.stringify(require('./mock/main/main')));
-})
+var app = express();
 
-// 验证token
-app.post('/gateway/auth/oauth/token', (req, res) => {
-  res.set('Content-Type', 'application/json; charset=utf-8')
-  res.send(JSON.stringify(require('./mock/main/oauth-token')));
-})
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
-// 获取个人信息
-app.post('/gateway/auth/login/getUserInfo', (req, res) => {
-  res.set('Content-Type', 'application/json; charset=utf-8')
-  res.send(JSON.stringify(require('./mock/main/user-info')));
-})
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-// 查看地址
-app.post('/account/addresses', (req, res) => {
-  res.set('Content-Type', 'application/json; charset=utf-8')
-  res.send(JSON.stringify(require('./mock/account/addresses')));
-})
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
 
-// 查看省份
-app.post('/area/provinces', (req, res) => {
-  res.set('Content-Type', 'application/json; charset=utf-8')
-  res.send(JSON.stringify(require('./mock/account/provinces')));
-})
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
+});
 
-// 查看市
-app.post('/area/cities', (req, res) => {
-  res.set('Content-Type', 'application/json; charset=utf-8')
-  res.send(JSON.stringify(require('./mock/account/cities')));
-})
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-// 查看区/县
-app.post('/area/counties', (req, res) => {
-  res.set('Content-Type', 'application/json; charset=utf-8')
-  res.send(JSON.stringify(require('./mock/account/counties')));
-})
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
 
-// 查看村
-app.post('/area/towns', (req, res) => {
-  res.set('Content-Type', 'application/json; charset=utf-8')
-  res.send(JSON.stringify(require('./mock/account/towns')));
-})
-
-// 查看订单
-app.post('/order/list', (req, res) => {
-  res.set('Content-Type', 'application/json; charset=utf-8')
-  res.send(JSON.stringify(require('./mock/order/list')));
-})
-
-// 查看是否可以退货
-app.post('/after/getCustomerExpectComp', (req, res) => {
-  res.set('Content-Type', 'application/json; charset=utf-8')
-  res.send(JSON.stringify(require('./mock/order/customer-expect-comp')));
-})
-
-// 查看物流信息
-app.post('/order/orderTrack', (req, res) => {
-  res.set('Content-Type', 'application/json; charset=utf-8')
-  res.send(JSON.stringify(require('./mock/order/order-track')));
-})
-
-http.createServer(app).listen(port, host, () => console.log(`http app listening on port http://${host}:${port}!`))
+module.exports = app;
