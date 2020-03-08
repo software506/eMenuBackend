@@ -1,0 +1,15 @@
+{
+  "name": "emenu",
+  "version": "0.0.1",
+  "description": "for emenu",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mockjs": "^1.1.0"
+  }
+}
