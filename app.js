@@ -1,7 +1,9 @@
 const express = require('express')
+const dotenv = require("dotenv")
+dotenv.config()
 const app = express()
-const port = 3000
-const host = '192.168.31.19'
+const port = process.env.ORIGIN_HOST_PROT
+const host = process.env.ORIGIN_HOST
 var https = require('https')
 var http = require('http')
 

@@ -4,12 +4,14 @@
   "description": "for emenu",
   "main": "index.js",
   "scripts": {
-    "app": "sh ./run.sh",
+    "app-dev": "sh ./create-env.sh dev; sh ./run.sh",
+    "app": "sh ./create-env.sh prod; sh ./run.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mockjs": "^1.1.0"
   }
