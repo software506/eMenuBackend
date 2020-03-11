@@ -176,7 +176,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"data\": {\n    \"orders\": [\n      {\n        \"order\": {\n          \"orderId\": \"\",\n          \"createdTime\": \"\",\n          \"status\": \"\", // 未支付\n          \"nbAmount\": \"\", // 应付\n          \"freightAmount\": \"\", // 运费\n        },\n        \"orderExtRespList\": [\n          {\n            \"name\": \"\", // 商品名\n            \"goodsImg\": \"\", // 商品图\n            \"saleValue\": \"\", // 商品描述\n            \"nbPrice\": \"\" // 商品价格\n          }\n        ],\n        \"address\": {\n          \"name\": \"\",\n          \"mobile\": \"\",\n          \"provinceName\": \"\",\n          \"cityName\": \"\",\n          \"countyName\": \"\",\n          \"detailAddress\": \"\"\n        }\n      }\n    ]\n  }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"data\": {\n    \"orders\": [\n      {\n        \"order\": {\n          \"orderId\": \"\",\n          \"createdTime\": \"\",\n          \"status\": \"\", // 未支付\n          \"nbAmount\": \"\", // 应付\n          \"freightAmount\": \"\", // 运费\n        },\n        \"orderExtRespList\": [\n          {\n            \"name\": \"\", // 商品名\n            \"goodsImg\": \"\", // 商品图\n            \"saleValue\": \"\", // 商品描述\n            \"nbPrice\": \"\", // 商品价格\n            \"num\": \"\",\n            \"skuId\": \"\",\n          }\n        ],\n        \"address\": {\n          \"name\": \"\",\n          \"mobile\": \"\",\n          \"provinceName\": \"\",\n          \"cityName\": \"\",\n          \"countyName\": \"\",\n          \"detailAddress\": \"\"\n        }\n      }\n    ]\n  }\n}",
           "type": "json"
         }
       ]
